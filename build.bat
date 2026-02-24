@@ -2,7 +2,7 @@
 SETLOCAL
 
 SET VENV_PATH=.venv
-SET ICON_PATH=kei.ico
+SET ICON_PATH=asset/kei.ico
 SET MAIN_FILE=main.py
 SET EXE_NAME=BA_TL_Launcher
 
@@ -25,7 +25,7 @@ echo [4/4] Starting PyInstaller Build...
 pyinstaller --noconsole --onefile ^
     --icon=%ICON_PATH% ^
     --name %EXE_NAME% ^
-    --add-data "kei.ico;." ^
+    --add-data "asset;asset" ^
     --collect-all customtkinter ^
     --clean ^
     %MAIN_FILE%
@@ -36,5 +36,3 @@ IF %ERRORLEVEL% NEQ 0 (
 ) ELSE (
     echo [!] Build SUCCESSFUL! Your EXE is in the 'dist' folder.
 )
-
-pause

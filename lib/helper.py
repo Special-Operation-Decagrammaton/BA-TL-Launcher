@@ -1,6 +1,5 @@
 import sys
 import os
-import customtkinter as ctk
 
 def resource_path(relative_path):
     try:

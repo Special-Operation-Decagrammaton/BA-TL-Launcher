@@ -7,9 +7,15 @@ class Language(Enum):
 
 class BuildTag(Enum):
     LATEST = "latest-build"
+    TRANSLATION = "translation-build"
     
 class Branch(Enum):
     MAIN = "main"
+    TRANSLATION = "translation"
+    
+    @classmethod
+    def list_values(cls):
+        return [member.value for member in cls]
 
 class LauncherConfig(BaseModel):
     GamePath: Path

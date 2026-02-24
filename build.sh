@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VENV_PATH=".venv"
-ICON_PATH="kei.png"
+ICON_PATH="asset/kei.png"
 MAIN_FILE="main.py"
 EXE_NAME="BA_TL_Launcher"
 
@@ -23,7 +23,7 @@ echo "[4/4] Starting PyInstaller Build..."
 pyinstaller --noconsole --onefile \
     --icon="$ICON_PATH" \
     --name "$EXE_NAME" \
-    --add-data "kei.ico:." \
+    --add-data "asset;asset" \
     --collect-all customtkinter \
     --clean \
     "$MAIN_FILE"
@@ -36,5 +36,3 @@ else
     echo ""
     echo "[!] Build SUCCESSFUL! Your executable is in the 'dist' folder."
 fi
-
-read -p "Press enter to continue..."
