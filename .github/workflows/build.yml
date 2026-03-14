@@ -43,6 +43,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Build executable
+      shell: bash
       run: |
         pyinstaller --noconsole --onefile \
           --icon="${{ matrix.icon }}" \
