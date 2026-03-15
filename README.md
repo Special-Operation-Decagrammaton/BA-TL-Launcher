@@ -1,69 +1,44 @@
-
 # BA-TL-Launcher
-**The official automated patcher for Blue Archive JP English Translation.**
+
+An automated patcher for Blue Archive JP localization.
 
 [![Build Status](https://github.com/Special-Operation-Decagrammaton/BA-TL-Launcher/actions/workflows/build.yml/badge.svg)](https://github.com/Special-Operation-Decagrammaton/BA-TL-Launcher/actions)
 [![Latest Release](https://img.shields.io/github/v/release/Special-Operation-Decagrammaton/BA-TL-Launcher)](https://github.com/Special-Operation-Decagrammaton/BA-TL-Launcher/releases)
 
-`BA-TL-Launcher` is a GUI utility designed to simplify the patching process for Blue Archive JP. Instead of manual file replacement, this launcher automates the synchronization between your game files and the translated assets maintained by the community.
+`BA-TL-Launcher` is a GUI utility that synchronizes local game files with translated assets provided by the [BA-TL-Assets](https://github.com/Special-Operation-Decagrammaton/BA-TL-Assets) repository.
 
 ---
 
-## 🛠️ How it Works
-The launcher is designed to be lightweight and efficient:
-1.  **Manifest Check:** It fetches the `GameManifest.json` from the [BA-TL-Assets](https://github.com/Special-Operation-Decagrammaton/BA-TL-Assets) release page.
-2.  **Version Comparison:** It compares your local files with the manifest to determine which assets need updating.
-3.  **Direct Download:** It downloads only the necessary modified assets directly from the latest asset releases.
-4.  **Patching:** It applies the translation layer (either "Vanilla Global" or "Community Translation") based on your preference.
+## Technical Workflow
+1. **Manifest Retrieval:** Fetches the current `GameManifest.json` from the Assets repository.
+2. **Delta Check:** Compares local file hashes against the manifest to identify required updates.
+3. **Synchronization:** Downloads and applies modified assets based on user-selected branches.
 
----
+## Project Structure
+The launcher is part of a multi-stage localization pipeline:
 
-## 🌐 The Ecosystem
-The launcher sits at the end of a three-stage pipeline:
+* **[BA-TL-Assets](https://github.com/Special-Operation-Decagrammaton/BA-TL-Assets):** The source for compiled, game-ready assets and version manifests.
+* **[BA-TL-TEXT](https://github.com/Special-Operation-Decagrammaton/BA-TL-TEXT):** The community workspace for translation source files.
+* **[BA-RAW-TEXT](https://github.com/Special-Operation-Decagrammaton/BA-RAW-TEXT):** Reference repository containing raw localization dumps for version comparison.
 
-### 📥 [BA-TL-Assets](https://github.com/Special-Operation-Decagrammaton/BA-TL-Assets)
-**This is the only repository the Launcher interacts with.** It contains the compiled, game-ready assets.
-*   **Main Branch:** Direct port of Global translations to JP (No modifications).
-*   **Translation Branch:** Community-enhanced text sourced from `BA-TL-TEXT`.
-*   **Releases:** Contains the `GameManifest.json` and the actual patched files used by the GUI.
+## Features
+- **Automated Versioning:** Uses manifest-based updates to minimize bandwidth usage.
+- **Branch Support:** Toggle between "Vanilla Global" and "Community Enhanced" translations.
+- **File Validation:** Verifies the integrity of applied patches.
+- **Cross-Platform:** Native support for Windows and Linux.
 
-### 📝 [BA-TL-TEXT](https://github.com/Special-Operation-Decagrammaton/BA-TL-TEXT)
-Contains the `.toml` files where the community adds and modifies translations. These files are used to compile the assets found in the `translation` branch of the Assets repo.
-
-### 🔍 [BA-RAW-TEXT](https://github.com/Special-Operation-Decagrammaton/BA-RAW-TEXT)
-A repository for raw localization data used by developers and translators to compare versions:
-*   `gl`: Full Global text dump.
-*   `jp`: Full JP text dump.
-*   `main`: Tracks content missing from Global that requires manual translation.
-
----
-
-## ✨ Launcher Features
-- **Automated Updates:** Uses `GameManifest.json` to ensure you always have the latest translation.
-- **Branch Selection:** Easily switch between the "Vanilla" Global port and the "Community" enhanced translation.
-- **Integrity Check:** Verifies game files to ensure the patch is applied correctly.
-- **Modern UI:** Built with `CustomTkinter` for a clean, user-friendly experience.
-
----
-
-## 🚀 Installation
+## Installation
 
 ### Windows
-1. Download `BA_TL_Launcher_windows.exe` from the [Releases](https://github.com/Special-Operation-Decagrammaton/BA-TL-Launcher/releases) page.
-2. Run the executable and point it to your Blue Archive JP installation folder.
+1. Download the latest `BA_TL_Launcher_windows.exe` from [Releases](https://github.com/Special-Operation-Decagrammaton/BA-TL-Launcher/releases).
+2. Execute the file and select your game installation directory.
 
 ### Linux
-1. Download `BA_TL_Launcher_linux` from the [Releases](https://github.com/Special-Operation-Decagrammaton/BA-TL-Launcher/releases) page.
-2. Grant execution permissions: `chmod +x BA_TL_Launcher_linux`
-3. Run the binary.
+1. Download `BA_TL_Launcher_linux` from [Releases](https://github.com/Special-Operation-Decagrammaton/BA-TL-Launcher/releases).
+2. Set execution permissions: `chmod +x BA_TL_Launcher_linux`
+3. Execute the binary.
 
----
-
-## ⚠️ Disclaimer
-**BA-TL-Launcher** is an unofficial fan tool. 
-- We are not affiliated with Nexon, NAT Games, or Yostar.
-- Modifying game files carries a theoretical risk of account suspension. Use at your own risk.
-- This tool does not distribute game binaries; it only patches text-based assets.
-
----
-*Maintained by the Special Operation Decagrammaton team.*
+## Disclaimer
+- This is an unofficial fan-made tool and is not affiliated with Nexon, NAT Games, or Yostar.
+- Modifying game files may carry a risk of account suspension.
+- This utility does not distribute game binaries; it only modifies text-based assets.
