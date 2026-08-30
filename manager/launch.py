@@ -104,7 +104,26 @@ class LaunchManager:
             command=toggle_col,
             font=("Roboto", 14)
         )
-        col_switch.pack(pady=15)
+        col_switch.pack(pady=(12, 6))
+
+        def toggle_download_img():
+            self.app.setting_manager.toggle_download_images(download_images_var.get())
+
+        download_images_var = ctk.BooleanVar(value=getattr(self.app.game_config, "DownloadImages", False))
+        img_checkbox = ctk.CTkCheckBox(
+            popup, text=t("download_images"),
+            variable=download_images_var,
+            command=toggle_download_img,
+            font=("Roboto", 14)
+        )
+        img_checkbox.pack(pady=(6, 2))
+
+        img_hint_label = ctk.CTkLabel(
+            popup, text=t("download_images_hint"),
+            font=("Roboto", 11),
+            text_color="gray60"
+        )
+        img_hint_label.pack(pady=(0, 10))
 
         # Language selector (only appears in --ptbr)
         if ptbr:
